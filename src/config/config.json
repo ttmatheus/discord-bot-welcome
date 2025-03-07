@@ -1,0 +1,67 @@
+{
+  "globalPrefix": "!",
+  "ownerID": "799086286693597206",
+  "developerPermissions": {
+    "799086286693597206": ["Dev", "Admin", "Mod"]
+  },
+  "slashCommands": {
+    "register": true,
+    "guilds": []
+  },
+  "embedColors": {
+    "default": "#00ff7f",
+    "green": "#00ff7f",
+    "red": "#ff1d0b"
+  },
+  "webhookLoggers": {
+    "errors": null,
+    "events": null
+  },
+  "guildLinks": {
+    "support": {
+      "name": null,
+      "emoji": null,
+      "url": null
+    },
+    "official": {
+      "name": null,
+      "emoji": null,
+      "url": null
+    },
+    "shop": {
+      "name": null,
+      "emoji": null,
+      "url": null
+    },
+    "jardim": {
+      "name": "Jardim",
+      "emoji": "🍃",
+      "url": "https://discord.gg/PVdBD8FX7Y"
+    }
+  },
+  "botStatus": {
+    "interval": 30000,
+    "status": [
+      {
+        "type": 0,
+        "name": "Sou uma aplicação muito legal! - 🍃 Desenvolvido por Jardim."
+      },
+      {
+        "type": 1,
+        "name": "Veja meus recursos incríveis - 🍃 Desenvolvido por Jardim."
+      },
+      {
+        "type": 2,
+        "name": "Use os meus comandos! - 🍃 Desenvolvido por Jardim."
+      },
+      {
+        "type": 3,
+        "name": "Fui feito em JavaScript! - 🍃 Desenvolvido por Jardim."
+      },
+      {
+        "type": 5,
+        "name": "Fui feito pelo melhor servidor de desenvolvimento de aplicações da plataforma! - 🍃 Desenvolvido por Jardim."
+      }
+    ]
+  }
+}

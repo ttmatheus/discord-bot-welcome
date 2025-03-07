@@ -18,7 +18,7 @@ Este bot foi criado com **Discord.js** e oferece recursos como economia, jogos, 
 
 ## Funcionalidades
 
-- Sistema de economia com apostas, corridas, trabalhos e recompensas diárias.
+- Sistema de economia com apostas, trabalhos e recompensas diárias.
 - Comandos de prefixo (`!`) e slash (`/`).
 - Sistema anti-crash e monitoramento de recursos.
 - Personalização de avatar/banner do bot.

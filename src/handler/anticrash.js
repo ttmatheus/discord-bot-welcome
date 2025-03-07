@@ -4,7 +4,7 @@ export class AntiCrash {
   constructor(client) {
     this.client = client;
     this.maxMemoryUsage = 200;
-    this.maxCPUusage = 2.0;
+    this.maxCPUusage = 20.0;
     this.monitoringInterval = 180_000;
   }
 

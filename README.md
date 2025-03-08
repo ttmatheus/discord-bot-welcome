@@ -161,7 +161,6 @@ Configurações do sistema de economia.
 #### **Games**:
 - `!apostar <usuário> <valor>` (cara-ou-coroa)  
 - `!cassino` (jogo de slots)  
-- `!corrida` (corrida de emojis)  
 
 #### **Informations**:
 - `!informações` (sobre o bot)  

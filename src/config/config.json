@@ -1,10 +1,10 @@
 {
   "welcomeSystem": {
-    "welcomeChannel": "1194339879816011898",
-    "welcomeMessage": "{\n  \"embeds\": [\n    {\n      \"title\": \"👋 Bem-vindo(a)!\",\n      \"description\": \"{user}, seja bem-vindo(a) ao **{server}**!\",\n      \"color\": 5763719\n    }\n  ]\n}",
-    "leaveChannel": "1194339879816011898",
-    "leaveMessage": "{\n  \"embeds\": [\n    {\n      \"title\": \"🚪 Saiu do servidor\",\n      \"description\": \"{user} acabou de sair do servidor.\",\n      \"color\": 15548997\n    }\n  ]\n}",
-    "mode": "Ambos"
+    "welcomeChannel": "",
+    "welcomeMessage": "",
+    "leaveChannel": "",
+    "leaveMessage": "",
+    "mode": ""
   },
   "ownerID": "799086286693597206",
   "developerPermissions": {

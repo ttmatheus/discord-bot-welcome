@@ -87,3 +87,5 @@ welcome-bot/
 ## 📄 Licença
 
 MIT
+
+# discord-bot-welcome

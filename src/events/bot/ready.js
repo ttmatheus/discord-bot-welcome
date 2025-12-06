@@ -4,7 +4,7 @@ import colors from "colors";
 export default class Event extends EventListener {
   constructor(client) {
     super(client, {
-      eventName: "ready",
+      eventName: "clientReady",
     });
 
     this.currentStatusIndex = 0;

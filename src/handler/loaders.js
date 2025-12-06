@@ -24,33 +24,18 @@ export class Loaders {
   }
 
   async loadCommands() {
-    const folders = ["slash", "prefix"];
+    const categories = readdirSync("./src/commands/slash");
+    for (const category of categories) {
+      const commandFiles = readdirSync(`./src/commands/slash/${category}`);
+      for (const file of commandFiles) {
+        let query = await import(`../commands/slash/${category}/${file}`);
+        let command = new query.default(this.client);
 
-    for (const type of folders) {
-      const categories = readdirSync(`./src/commands/${type}`);
-      for (const category of categories) {
-        const commandFiles = readdirSync(`./src/commands/${type}/${category}`);
-        for (const file of commandFiles) {
-          let query = await import(`../commands/${type}/${category}/${file}`);
-          let command = new query.default(this.client);
-
-          if (type === "slash") {
-            this.client.slashCommands.set(
-              command.slashCommandData.name,
-              command,
-            );
-            console.log(
-              `[✅ COMANDO - SLASH]`.bgGreen +
-                ` - Comando carregado "${command.slashCommandData.name}".`,
-            );
-          } else {
-            this.client.prefixCommands.set(command.commandName, command);
-            console.log(
-              `[✅ COMANDO - PREFIX]`.bgYellow +
-                ` - Comando: carregado "${command.commandName}".`,
-            );
-          }
-        }
+        this.client.slashCommands.set(command.slashCommandData.name, command);
+        console.log(
+          `[✅ COMANDO - SLASH]`.bgGreen +
+            ` - Comando carregado "${command.slashCommandData.name}".`,
+        );
       }
     }
   }

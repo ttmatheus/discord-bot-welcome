@@ -1,215 +1,89 @@
-# Bot de Economia Básica
+# Welcome Bot Discord Node.js
 
-Este bot foi criado com **Discord.js** e oferece recursos como economia, jogos, sistema de logs e comandos interativos. Desenvolvido pelo **Jardim**.
+Bot Discord completo desenvolvido em Node.js com sistema modular, focado em boas-vindas e fácil personalização.
 
-## Índice
+## ✨ Funcionalidades Principais
 
-- [Funcionalidades](#funcionalidades)
-- [Configuração](#configuração)
-  - [Arquivo `.env`](#arquivo-env)
-  - [Arquivo `config.json`](#arquivo-configjson)
-  - [Arquivo `economy.json`](#arquivo-economyjson)
-- [Comandos Disponíveis](#comandos-disponíveis)
-- [Como Funciona](#como-funciona)
-- [Logs](#logs)
-- [Status Cíclico](#status-cíclico)
+- **Suporte a Comandos de Barra**: Slash Commands (`src/commands/slash`)
+- **Interações**: Suporte a botões, menus de seleção e modais (`src/interactions`)
+- **Configuração Simples**: Arquivo de configuração centralizado
+- **Estrutura Robusta**: Handlers e Structures para escalabilidade
 
----
+## 🚀 Início Rápido
 
-## Funcionalidades
+### 1. Instale as Dependências
+```bash
+npm install
+```
 
-- Sistema de economia com apostas, trabalhos e recompensas diárias.
-- Comandos de prefixo (`!`) e slash (`/`).
-- Sistema anti-crash e monitoramento de recursos.
-- Personalização de avatar/banner do bot.
-- Placar de usuários com histórico de transações.
-- Status automático do bot no Discord.
-
----
-
-## Configuração
-
-### **Arquivo `.env`**  
-Contém variáveis sensíveis. **NUNCA COMPARTILHE ESTE ARQUIVO!**
-
+### 2. Configure as Variáveis de Ambiente
+Crie um arquivo `.env` na raiz do projeto (baseado no `.env.example`):
 ```env
-CLIENT_TOKEN="token"    # Token do bot (obtido no Discord Developer Portal)
-MONGO_URI="mongouri"    # URI do MongoDB (obtido no MongoDB Atlas)
-TZ="America/Sao_Paulo"  # Fuso horário para sincronização de tempos
+BOT_TOKEN=seu_token_do_bot
+MONGO_URI=seu_uri_do_mongodb
+# Outras variáveis necessárias
 ```
 
-#### **Como Obter os Valores**:
-1. **`CLIENT_TOKEN`**:
-   - Vá para o [Discord Developer Portal](https://discord.com/developers/applications).
-   - Selecione seu bot > **Bot** > Copie o token.
-   
-2. **`MONGO_URI`**:
-   - Crie uma conta no [MongoDB Atlas](https://www.mongodb.com/atlas).
-   - Crie um cluster e obtenha a URI de conexão (ex.: `mongodb+srv://user:password@cluster.mongodb.net/dbname`).
+### 3. Configure o Bot
+Edite o arquivo `src/config/config.json` para personalizar as configurações do bot.
 
----
-
-### **Arquivo `config.json`**  
-Configurações gerais do bot.
-
-```json
-{
-  "globalPrefix": "!",  // Prefixo para comandos de texto (ex.: "!ajuda")
-  "ownerID": "799086286693597206",  // ID do dono do bot (para permissões especiais)
-  "developerPermissions": {
-    "799086286693597206": ["Dev", "Admin", "Mod"]  // Permissões de desenvolvedor por ID
-  },
-  "slashCommands": {
-    "register": true,  // Registrar comandos de barra globalmente
-    "guilds": []       // IDs de servidores para registro de comandos de barra (opcional)
-  },
-  "embedColors": {
-    "green": "#00ff7f",  // Cor padrão para embeds de sucesso
-    "red": "#ff1d0b"     // Cor padrão para embeds de erro
-  },
-  "webhookLoggers": {
-    "errors": "https://discord.com/api/webhooks/...",  // URL do webhook para logs de erro
-    "events": null                                   // Pode ser nulo se não usado
-  },
-  "guildLinks": {
-    "support": { "name": null, "emoji": null, "url": null },  // Links de servidores relacionados
-    "jardim": { "name": "Jardim", "emoji": "🍃", "url": "https://discord.gg/PVdBD8FX7Y" } // Exemplo
-  },
-  "botStatus": {
-    "interval": 30000,  // Intervalo em milissegundos para atualizar o status
-    "status": [         // Lista de status cíclicos
-      { "type": 0, "name": "Sou uma aplicação muito legal! - 🍃 Desenvolvido por Jardim." },
-      { "type": 3, "name": "Fui feito em JavaScript! - 🍃 Desenvolvido por Jardim." }
-    ]
-  }
-}
+### 4. Inicie o Bot
+Para desenvolvimento (com reinício automático):
+```bash
+npm run dev
 ```
 
----
-
-### **Arquivo `economy.json`**  
-Configurações do sistema de economia.
-
-```json
-{
-  "emojis": {
-    "money": "<:jardim:1181076936366248008>"  // Emoji da moeda (ex.: <:nome:ID>)
-  },
-  "names": {
-    "money": "folhas"  // Nome da moeda (ex.: "folhas", "moedas", "dólares", etc...)
-  },
-  "limiters": {
-    "coinflip": { "min": 0.5, "max": 100000 },  // Limites para apostas em cara-ou-coroa
-    "slots": { "min": 10, "max": 50000 },       // Limites para o cassino
-    "payment": { "min": 5, "max": 1000000 },    // Limites para pagamentos entre usuários
-    "leaderboard": { "limit": 5 }              // Usuários por página no placar e páginas a serem vistas
-  },
-  "prizes": {
-    "daily": { "min": 200, "max": 800 },        // Recompensa diária (valor aleatório)
-    "weekly": { "min": 1000, "max": 4000 },     // Recompensa semanal
-    "work": { "min": 20, "max": 80 }            // Recompensa por trabalho
-  },
-  "resets": {
-    "daily": { "hour": 0, "minute": 0 },        // Horário de reset diário (00:00)
-    "weekly": { "day": 1, "hour": 0, "minute": 0 }  // Reset semanal (segunda-feira às 00:00)
-  },
-  "settings": {
-    "slots": {
-      "emojis": {  // Emojis e multiplicadores do cassino
-        "🍒": 2,   // Ex.: Cereja paga 2x o valor apostado
-        "7️⃣": 10  // 7 paga 10x
-      }
-    },
-    "work": {
-      "cooldown": 60,  // Tempo de espera entre trabalhos (em minutos)
-      "phrases": [     // Frases aleatórias ao trabalhar
-        "Você trabalhou como **entregador** e ganhou {amount}!",
-        "Você foi um **programador** por um dia e recebeu {amount}!"
-      ]
-    }
-  }
-}
+Para produção:
+```bash
+npm start
 ```
 
----
+## ☁️ Deploy na ShardCloud (Recomendado)
 
-## Comandos Disponíveis
+Para deploy rápido e gerenciamento simplificado, recomendamos usar a **ShardCloud**:
 
-### **Categorias**:
+### 🚀 Deploy em 3 Passos
+1. **Crie o arquivo `.shardcloud`** (copie de `.shardcloud.example` se necessário)
+2. **Configure as variáveis** no painel da ShardCloud
+3. **Faça upload e deploy** - Pronto!
 
-#### **Development** (Apenas para desenvolvedores, administradores e moderadores):
-- `!addmoney <usuário> <valor>`  
-- `!trocaravatar <imagem>`  
-- `!trocarbanner <imagem>`  
-- `!botban <usuário> [razão]`  
-- `!botunban <usuário>`  
-- `!eval <código>`  
-- `!checkup`  
-- `!removemoney <usuário> <valor>`  
-- `!trocarusername <novo_nome>`  
+### 📋 Configuração na ShardCloud
+Certifique-se de configurar as variáveis de ambiente obrigatórias no painel:
+- `BOT_TOKEN`
+- `MONGO_URI`
 
-#### **Economy**:
-- `!saldo [usuário]`  
-- `!tempos` (cooldowns)  
-- `!diário` (recompensa diária)  
-- `!placar [página]`  
-- `!pagar <usuário> <valor>`  
-- `!transações [página]`  
-- `!semanal` (recompensa semanal)  
-- `!trabalhar`  
+## 🛠️ Scripts Disponíveis
 
-#### **Games**:
-- `!apostar <usuário> <valor>` (cara-ou-coroa)  
-- `!cassino` (jogo de slots)  
+- `npm run dev` – Modo de desenvolvimento (Node.js com watch mode)
+- `npm start` – Modo de produção
+- `npm run format` – Formatar código com Prettier
 
-#### **Informations**:
-- `!informações` (sobre o bot)  
-- `!convite` (link de convite)  
-- `!ping` (latência do bot)  
+## 📋 Estrutura do Projeto
 
-#### **Miscellaneous**:
-- `!ajuda` (menu interativo)  
+```
+welcome-bot/
+├── src/
+│   ├── assets/            # Ativos estáticos
+│   ├── commands/          # Comandos do bot (Slash)
+│   ├── config/            # Arquivos de configuração (config.json)
+│   ├── events/            # Eventos do Discord
+│   ├── functions/         # Funções utilitárias
+│   ├── handler/           # Carregadores de comandos, eventos, etc.
+│   ├── interactions/      # Interações (Buttons, Selects, Modals)
+│   └── structures/        # Classes base (Client, etc.)
+├── .env.example           # Exemplo de variáves de ambiente
+├── .shardcloud.example    # Exemplo de configuração ShardCloud
+├── index.js               # Ponto de entrada
+└── package.json           # Dependências e scripts
+```
 
----
+## 🔧 Tecnologias Utilizadas
 
-## Como Funciona
+- **Node.js** - Runtime JavaScript
+- **Discord.js v14** - Biblioteca para Discord API
+- **Mongoose** - ODM para MongoDB
+- **Prettier** - Formatação de código
 
-### **Sistema de Economia**:
-- **Moedas**: Usuários ganham moedas (`folhas`) através de trabalhos, recompensas diárias/semanais e apostas.
-- **Apostas**: Em comandos como `!apostar` e `!cassino`, o bot usa transações para registrar ganhos/perdas.
+## 📄 Licença
 
-### **Transações**:
-- Todas as operações financeiras são registradas no banco de dados com detalhes como:
-  ```json
-  {
-    "source": 6,  // Tipo de transação (ex.: 6 = cara-ou-coroa)
-    "given_by": "123456789012345678",
-    "received_by": "987654321098765432",
-    "amount": 500
-  }
-  ```
-
-### **Base de Dados**:
-- Usa **MongoDB** para armazenar:
-  - Saldo dos usuários (`Users`).
-  - Configurações dos servidores (`Guilds`).
-  - Histórico de transações (`Transactions`).
-
----
-
-## Logs
-
-- **Erros**: Enviados para o webhook definido em `webhookLoggers.errors`.
-- **Eventos**: Pode ser configurado em `webhookLoggers.events` (opcional).
-
----
-
-## Status Cíclico
-
-- O bot atualiza automaticamente seu status no Discord a cada `30 segundos` com frases personalizadas (ex.: "Use os meus comandos!").
-
----
-
-## Conclusão
-
-Este bot é altamente personalizável e modular. Para dúvidas ou suporte, entre em contato no [Jardim](https://discord.gg/PVdBD8FX7Y).
+MIT

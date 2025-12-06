@@ -15,12 +15,6 @@ export default class Command extends CommandBase {
         .setDescription(
           "Mostra os links de redirecionamento para os servidores da aplicação.",
         )
-        .setNameLocalizations({ "pt-BR": "convite", "en-US": "invite" })
-        .setDescriptionLocalizations({
-          "pt-BR":
-            "Mostra os links de redirecionamento para os servidores da aplicação.",
-          "en-US": "Shows the redirect links to the application servers.",
-        })
         .setContexts(["Guild"]),
       commandName: "convite",
       commandAliases: ["servidor", "invite", "links"],

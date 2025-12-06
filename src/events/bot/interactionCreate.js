@@ -19,9 +19,6 @@ export default class Event extends EventListener {
       const interactionHandler = this.client.slashCommands.get(interactionKey);
       if (!interactionHandler) return;
 
-      const userData = await this.client.database.getOrUpdateUser(
-        interaction.user.id,
-      );
       const userPerms =
         this.client.config.developerPermissions[interaction.user.id] || [];
       if (
@@ -34,21 +31,6 @@ export default class Event extends EventListener {
           content: `❌ ${interaction.user}, você não tem permissão para usar este comando!`,
           flags: MessageFlags.Ephemeral,
         });
-
-      if (userData.userBanishmentData.banTimestamp > 0) {
-        return interaction.reply({
-          content: `❌ ${
-            interaction.user
-          }, você está proíbido de utilizar meus comandos!\n-# - Data do banimento: <t:${Math.floor(
-            userData.userBanishmentData.banTimestamp / 1000,
-          )}> (<t:${Math.floor(
-            userData.userBanishmentData.banTimestamp / 1000,
-          )}:R>)\n-# - Razão do banimento: \`${
-            userData.userBanishmentData.banReason
-          }\``,
-          flags: MessageFlags.Ephemeral,
-        });
-      }
 
       if (
         interactionHandler.commandDisabled &&

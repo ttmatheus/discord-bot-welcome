@@ -1,7 +1,0 @@
-[2025-03-04T00:31:33.777Z] [ERROR]: Exceção não tratada detectada
-Erro detalhado:
-TypeError: this.client.database.users.countDocuments is not a function
-    at Command.execute (file:///C:/Users/wivin/OneDrive/%C3%81rea%20de%20Trabalho/Projetos/Economia%20b%C3%A1sica%20-%20Jardim/src/commands/prefix/economy/balance.js:34:55)
-    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
-    at async Event.execute (file:///C:/Users/wivin/OneDrive/%C3%81rea%20de%20Trabalho/Projetos/Economia%20b%C3%A1sica%20-%20Jardim/src/events/bot/messageCreate.js:68:5)
-

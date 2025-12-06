@@ -16,13 +16,6 @@ export default class Command extends CommandBase {
         .setDescription(
           "Mostra a lista de comandos da aplicação e como utilziar os comandos.",
         )
-        .setNameLocalizations({ "pt-BR": "ajuda", "en-US": "help" })
-        .setDescriptionLocalizations({
-          "pt-BR":
-            "Mostra a lista de comandos da aplicação e como utilziar os comandos.",
-          "en-US":
-            "Shows the list of application commands and how to use the commands.",
-        })
         .setContexts(["Guild"]),
       commandName: "ajuda",
       commandDescription: "Mostra todos os comandos disponíveis.",
@@ -39,25 +32,18 @@ export default class Command extends CommandBase {
     const categoriesAssets = {
       miscellaneous: {
         name: "Diversos",
-        description:
-          "Comandos diversos que podem te ajudar em algumas coisas...",
+        description: "Comandos diversos que podem te ajudar em algumas coisas.",
         emoji: "🍃",
       },
       informations: {
         name: "Informativos",
-        description: "Comandos que te informam sobre algo específico...",
+        description: "Comandos que te informam sobre algo específico.",
         emoji: "❔",
       },
-      economy: {
-        name: "Economia",
-        description:
-          "Comandos de entretenimento voltados a uma economia global...",
-        emoji: "💸",
-      },
-      games: {
-        name: "Jogos",
-        description: "Comandos de entretenimento jogos e apostas...",
-        emoji: "🎲",
+      config: {
+        name: "Configurações",
+        description: "Comandos que te permitem configurar a aplicação.",
+        emoji: "⚙️",
       },
     };
 
@@ -75,16 +61,16 @@ export default class Command extends CommandBase {
       .setAuthor({
         name: `@${this.client.user.username}!`,
         iconURL: this.client.user.displayAvatarURL(),
-        url: this.client.config.guildLinks.jardim.url,
+        url: this.client.config.guildLinks.guild.url,
       })
       .setThumbnail(this.client.user.displayAvatarURL())
 
       .setTitle("Ajuda - Lista de comandos")
       .setDescription(
         `Olá, eu sou o ${this.client.user.username}! E estou aqui para te ajudar a utilizar meus comandos.` +
-          `\n\nPara utilizar um comando você deve utilizar do seguinte modo: \`<prefixo><comando> [argumentos]\`. ` +
-          `Você pode obter a lista de argumentos de um comando \`(caso tenha)\` utilizando o sub-comando \`<prefixo><comando> "info"\` \`(sem as áspas)\`.` +
-          `\n\nAtualmente meus comandos funcionam de duas formas, sendo elas:\n- Por **prefixo**: \`${this.client.config.globalPrefix}\`.\n- Por **barra**: \`/\`.` +
+          `\n\nPara utilizar um comando você deve utilizar a barra \`/\` seguida do nome do comando.` +
+          `\n\n📌 **Como usar:**\n- Digite \`/\` e selecione o comando desejado na lista que aparecer.` +
+          `\n- Alguns comandos possuem argumentos obrigatórios ou opcionais. O Discord irá te guiar!` +
           `\n\n-# Abaixo estão minhas listas de comandos separados por categoria, clique e escolha quais categorias deseja visualizar os comandos.`,
       )
 

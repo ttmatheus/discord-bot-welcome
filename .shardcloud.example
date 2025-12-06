@@ -1,0 +1,5 @@
+DISPLAY_NAME=Welcome Bot
+MAIN=index.js
+MEMORY=512
+VERSION=latest
+DESCRIPTION=Aplicação de boas-vindas pra servidores do discord.

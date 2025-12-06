@@ -1,8 +1,18 @@
 {
-  "globalPrefix": "!",
+  "welcomeSystem": {
+    "welcomeChannel": "1194339879816011898",
+    "welcomeMessage": "{\n  \"embeds\": [\n    {\n      \"title\": \"👋 Bem-vindo(a)!\",\n      \"description\": \"{user}, seja bem-vindo(a) ao **{server}**!\",\n      \"color\": 5763719\n    }\n  ]\n}",
+    "leaveChannel": "1194339879816011898",
+    "leaveMessage": "{\n  \"embeds\": [\n    {\n      \"title\": \"🚪 Saiu do servidor\",\n      \"description\": \"{user} acabou de sair do servidor.\",\n      \"color\": 15548997\n    }\n  ]\n}",
+    "mode": "Ambos"
+  },
   "ownerID": "799086286693597206",
   "developerPermissions": {
-    "799086286693597206": ["Dev", "Admin", "Mod"]
+    "799086286693597206": [
+      "Dev",
+      "Admin",
+      "Mod"
+    ]
   },
   "slashCommands": {
     "register": true,
@@ -18,25 +28,10 @@
     "events": null
   },
   "guildLinks": {
-    "support": {
-      "name": null,
-      "emoji": null,
-      "url": null
-    },
-    "official": {
-      "name": null,
-      "emoji": null,
-      "url": null
-    },
-    "shop": {
-      "name": null,
-      "emoji": null,
-      "url": null
-    },
-    "jardim": {
-      "name": "Jardim",
+    "guild": {
+      "name": "Shard Cloud",
       "emoji": "🍃",
-      "url": "https://discord.gg/PVdBD8FX7Y"
+      "url": "https://shardcloud.app/"
     }
   },
   "botStatus": {
@@ -44,23 +39,23 @@
     "status": [
       {
         "type": 0,
-        "name": "Sou uma aplicação muito legal! - 🍃 Desenvolvido por Jardim."
+        "name": "⚡ Sou uma aplicação muito legal! - Desenvolvido por @wivinnym - Shard Cloud."
       },
       {
         "type": 1,
-        "name": "Veja meus recursos incríveis - 🍃 Desenvolvido por Jardim."
+        "name": "⚡ Veja meus recursos incríveis - Desenvolvido por @wivinnym - Shard Cloud."
       },
       {
         "type": 2,
-        "name": "Use os meus comandos! - 🍃 Desenvolvido por Jardim."
+        "name": "⚡ Use os meus comandos! - Desenvolvido por @wivinnym - Shard Cloud."
       },
       {
         "type": 3,
-        "name": "Fui feito em JavaScript! - 🍃 Desenvolvido por Jardim."
+        "name": "⚡ Fui feito em JavaScript! - Desenvolvido por @wivinnym - Shard Cloud."
       },
       {
         "type": 5,
-        "name": "Fui feito pelo melhor servidor de desenvolvimento de aplicações da plataforma! - 🍃 Desenvolvido por Jardim."
+        "name": "⚡ Use o melhor servidor de hospedagem do Discord: Shard Cloud! - Desenvolvido por @wivinnym - Shard Cloud."
       }
     ]
   }

@@ -1,11 +1,13 @@
 {
-  "name": "base",
+  "name": "welcome-bot",
   "version": "1.0",
-  "description": "Uma base feita para as aplicações do Jardim.",
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node --watch index.js",
+    "start": "node index.js",
+    "format": "prettier --write ."
   },
   "author": "",
   "license": "ISC",
@@ -17,5 +19,8 @@
     "moment-precise-range-plugin": "^1.3.0",
     "mongoose": "^8.11.0",
     "os": "^0.1.2"
+  },
+  "devDependencies": {
+    "prettier": "^3.7.4"
   }
 }

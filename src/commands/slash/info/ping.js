@@ -6,13 +6,8 @@ export default class Command extends CommandBase {
   constructor(client) {
     super(client, {
       slashCommandData: new SlashCommandBuilder()
-        .setName("latência")
+        .setName("ping")
         .setDescription("Mostra a latência da aplicação.")
-        .setNameLocalizations({ "pt-BR": "latência", "en-US": "latency" })
-        .setDescriptionLocalizations({
-          "pt-BR": "Mostra a latência da aplicação.",
-          "en-US": "Shows application latency.",
-        })
         .setContexts(["Guild"]),
       commandName: "ping",
       commandAliases: ["latency", "latencia", "latência"],
@@ -30,14 +25,13 @@ export default class Command extends CommandBase {
     });
 
     let dbPing = Date.now();
-    await this.client.database.getOrUpdateUser(interaction.user.id);
     dbPing = Date.now() - dbPing;
 
     const responseLatency = Date.now() - startTime;
 
     return interaction
       .editReply({
-        content: `${interaction.user}, informações sobre a latência:\n-# - 🏓 Gateway: \`${this.client.ws.ping}ms\`\n-# - ⏰ Resposta: \`${responseLatency}ms\`\n-# - 📦 Banco de dados: \`${dbPing}ms\``,
+        content: `${interaction.user}, informações sobre a latência:\n-# - 🏓 Gateway: \`${this.client.ws.ping}ms\`\n-# - ⏰ Resposta: \`${responseLatency}ms\``,
       })
       .catch((err) => {
         this.client.logger.error(

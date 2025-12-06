@@ -16,31 +16,23 @@ export default class Interaction extends InteractionBase {
     const category = interaction.values[0];
     if (category === "development") return;
 
-    const commands = this.client.prefixCommands;
+    const commands = this.client.slashCommands;
     const categories = new Map();
     const categoriesAssets = {
       miscellaneous: {
         name: "Diversos",
-        description:
-          "Comandos diversos que podem te ajudar em alguma coisas...",
+        description: "Comandos diversos que podem te ajudar em algumas coisas.",
         emoji: "🍃",
       },
       informations: {
         name: "Informativos",
-        description:
-          "Comandos que te informam sobre algo específico, como a minha latência, por exemplo...",
+        description: "Comandos que te informam sobre algo específico.",
         emoji: "❔",
       },
-      economy: {
-        name: "Economia",
-        description:
-          "Comandos de entretenimento voltados a uma economia global...",
-        emoji: "💸",
-      },
-      games: {
-        name: "Jogos",
-        description: "Comandos de entretenimento jogos e apostas...",
-        emoji: "🎲",
+      config: {
+        name: "Configurações",
+        description: "Comandos que te permitem configurar a aplicação.",
+        emoji: "⚙️",
       },
     };
 
@@ -57,7 +49,7 @@ export default class Interaction extends InteractionBase {
       .setAuthor({
         name: `@${this.client.user.username}!`,
         iconURL: this.client.user.displayAvatarURL(),
-        url: this.client.config.guildLinks.jardim.url,
+        url: this.client.config.guildLinks.guild.url,
       })
       .setThumbnail(this.client.user.displayAvatarURL())
 
@@ -65,8 +57,8 @@ export default class Interaction extends InteractionBase {
       .setTitle(`Lista de comandos - ${categoriesAssets[category].name}`)
       .setDescription(
         `Aqui está a lista de comandos da categoria de comandos **${categoriesAssets[category].name}**!` +
-          `\n\nLembre-se meus comandos funcionam de duas formas, sendo elas:\n- Por **prefixo**: \`${this.client.config.globalPrefix}\`.\n- Por **barra**: \`/\`.` +
-          `\nOs argumentos são divididos dessa forma:\n- **Obrigatório**: \`<argumento: tipo>\`.\n- **Opcional**: \`[argumento: tipo]\`.` +
+          `\n\nTodos os comandos abaixo devem ser utilizados com a **barra** \`/\`.` +
+          `\nOs argumentos são divididos dessa forma:\n- **Obrigatório**: \`<argumento>\`.\n- **Opcional**: \`[argumento]\`.` +
           `\n\n-# Aqui estão os comandos da categoria: `,
       )
 
@@ -77,23 +69,28 @@ export default class Interaction extends InteractionBase {
       });
 
     categoryCommands.forEach((command) => {
-      let usage = "[nenhum argumento]";
-      if (command.commandUsage.length > 0) {
-        usage = `${this.client.config.globalPrefix}${
-          command.commandName
-        } ${command.commandUsage
-          .map(
-            (arg) =>
-              `${arg.required ? "<" : "["}${arg.name}: ${arg.type}${
-                arg.required ? ">" : "]"
-              }`,
-          )
-          .join(" ")}`;
+      let usage = "";
+      if (
+        command.slashCommandData &&
+        command.slashCommandData.options &&
+        command.slashCommandData.options.length > 0
+      ) {
+        usage = command.slashCommandData.options
+          .map((opt) => {
+            const name = opt.name;
+            const required = opt.required;
+            return required ? `<${name}>` : `[${name}]`;
+          })
+          .join(" ");
+      } else {
+        usage = "[nenhum argumento]";
       }
 
       categoryEmbed.addFields({
-        name: `\`${this.client.config.globalPrefix}\`${command.commandName}`,
-        value: `\`${usage}\``,
+        name: `\`/${command.commandName}\``,
+        value: `\`${
+          usage ? `/${command.commandName} ${usage}` : `/${command.commandName}`
+        }\`\n> ${command.commandDescription}`,
         inline: true,
       });
     });

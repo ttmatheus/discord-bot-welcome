@@ -41,7 +41,9 @@ export class Loaders {
   }
 
   async loadInteractions() {
-    const types = ["autocomplete", "buttons", "modals", "selects"];
+    const types = readdirSync("./src/interactions", { withFileTypes: true })
+      .filter((dirent) => dirent.isDirectory())
+      .map((dirent) => dirent.name);
 
     for (const type of types) {
       const files = readdirSync(`./src/interactions/${type}`);

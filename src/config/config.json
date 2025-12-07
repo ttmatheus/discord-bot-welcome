@@ -6,13 +6,9 @@
     "leaveMessage": "",
     "mode": ""
   },
-  "ownerID": "799086286693597206",
+  "ownerID": "SEU ID",
   "developerPermissions": {
-    "799086286693597206": [
-      "Dev",
-      "Admin",
-      "Mod"
-    ]
+    "SEU ID": ["Dev", "Admin", "Mod"]
   },
   "slashCommands": {
     "register": true,

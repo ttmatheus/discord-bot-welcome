@@ -20,22 +20,14 @@ npm install
 Crie um arquivo `.env` na raiz do projeto (baseado no `.env.example`):
 ```env
 BOT_TOKEN=seu_token_do_bot
-MONGO_URI=seu_uri_do_mongodb
-# Outras variáveis necessárias
 ```
 
 ### 3. Configure o Bot
 Edite o arquivo `src/config/config.json` para personalizar as configurações do bot.
 
-### 4. Inicie o Bot
-Para desenvolvimento (com reinício automático):
+### 4. Inicie o Bot:
 ```bash
-npm run dev
-```
-
-Para produção:
-```bash
-npm start
+node .
 ```
 
 ## ☁️ Deploy na ShardCloud (Recomendado)
@@ -43,20 +35,15 @@ npm start
 Para deploy rápido e gerenciamento simplificado, recomendamos usar a **ShardCloud**:
 
 ### 🚀 Deploy em 3 Passos
-1. **Crie o arquivo `.shardcloud`** (copie de `.shardcloud.example` se necessário)
-2. **Configure as variáveis** no painel da ShardCloud
-3. **Faça upload e deploy** - Pronto!
+
+Este projeto já vem configurado para a **ShardCloud**:
+1. O arquivo `.shardcloud` já está presente.
+2. Defina as variáveis de ambiente no painel.
+3. Faça o upload e inicie!
 
 ### 📋 Configuração na ShardCloud
 Certifique-se de configurar as variáveis de ambiente obrigatórias no painel:
 - `BOT_TOKEN`
-- `MONGO_URI`
-
-## 🛠️ Scripts Disponíveis
-
-- `npm run dev` – Modo de desenvolvimento (Node.js com watch mode)
-- `npm start` – Modo de produção
-- `npm run format` – Formatar código com Prettier
 
 ## 📋 Estrutura do Projeto
 
@@ -81,8 +68,6 @@ welcome-bot/
 
 - **Node.js** - Runtime JavaScript
 - **Discord.js v14** - Biblioteca para Discord API
-- **Mongoose** - ODM para MongoDB
-- **Prettier** - Formatação de código
 
 ## 📄 Licença
 
